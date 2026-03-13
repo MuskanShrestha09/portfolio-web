@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getEnvVariable } from '@/lib/db/client';
+import { getEnvVariable, getDb } from '@/lib/db/client';
 
 export const runtime = 'edge';
 
@@ -10,16 +10,7 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    let env: any;
-    try {
-      // @ts-ignore
-      const { getRequestContext } = await import('@cloudflare/next-on-pages');
-      env = getRequestContext()?.env;
-    } catch (e) {
-      console.log('getRequestContext not available, skipping...');
-    }
-
-    const db = env?.DB as D1Database | undefined;
+    const db = await getDb();
     
     if (!db) {
       return NextResponse.json({ error: 'Database not available in this environment' }, { status: 503 });

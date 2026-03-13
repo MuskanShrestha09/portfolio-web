@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getEnvVariable } from '@/lib/db/client';
+import { getEnvVariable, getDb } from '@/lib/db/client';
 
 export const runtime = 'edge';
 
@@ -8,14 +8,7 @@ export async function POST(req: NextRequest) {
     const { password } = await req.json();
     const ip = req.headers.get('cf-connecting-ip') || req.headers.get('x-forwarded-for') || '127.0.0.1';
     
-    let env: any;
-    try {
-      // @ts-ignore
-      const { getRequestContext } = await import('@cloudflare/next-on-pages');
-      env = getRequestContext()?.env;
-    } catch (e) {}
-
-    const db = env?.DB as D1Database | undefined;
+    const db = await getDb();
     const adminPassword = await getEnvVariable('ADMIN_PASSWORD');
 
     if (!adminPassword) {

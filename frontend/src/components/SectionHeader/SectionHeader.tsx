@@ -7,7 +7,7 @@ import styles from './SectionHeader.module.css';
 export default function SectionHeader() {
   return (
     <section className={styles.sectionHeader}>
-      <motion.div 
+      <motion.div
         className="container"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -17,11 +17,11 @@ export default function SectionHeader() {
         <div className={styles.topBar}>
           <div className={styles.brackets}>&gt;&gt;&gt;</div>
           <div className={styles.workTag}>//WORK</div>
-          <div className={styles.years}>2021 - 2026</div>
+          <div className={styles.years}>2024 - 2026</div>
         </div>
-        
+
         <div className={styles.mainContent}>
-          <motion.h2 
+          <motion.h2
             className={styles.title}
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -31,7 +31,7 @@ export default function SectionHeader() {
             SELECTED<br />WORK
           </motion.h2>
 
-          <motion.div 
+          <motion.div
             className={styles.whiteDot}
             animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
