@@ -1,1 +1,23 @@
-frontend/.wrangler
+# Wrangler local cache (contains account IDs - never commit)
+.wrangler/
+frontend/.wrangler/
+
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Environment files - NEVER commit secrets
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build outputs
+.vercel/
+.next/
+/build
+/out
+/dist
