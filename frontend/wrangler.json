@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "personal-web-frontend",
+  "name": "portfolio-web3",
   "compatibility_date": "2025-02-01",
   "compatibility_flags": [
     "nodejs_compat"
@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "personal_web_db",
-      "database_id": "04e8a2b1-6985-45c4-9147-0e023a538bfb"
+      "database_id": "f85b1b7c-933d-4cd4-bfa6-f1e8ccd6a3d4"
     }
   ]
 }
