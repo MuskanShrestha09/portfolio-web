@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import styles from './CustomCursor.module.css';
 
 export default function CustomCursor() {
@@ -13,8 +14,19 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
   
   const [isHovering, setIsHovering] = useState(false);
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin');
 
   useEffect(() => {
+    if (isAdmin) {
+      document.body.classList.add('admin-mode');
+    } else {
+      document.body.classList.remove('admin-mode');
+    }
+  }, [isAdmin]);
+
+  useEffect(() => {
+    if (isAdmin) return;
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -38,7 +50,9 @@ export default function CustomCursor() {
         el.removeEventListener('mouseleave', handleHoverEnd);
       });
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isAdmin]);
+
+  if (isAdmin) return null;
 
   return (
     <motion.div
