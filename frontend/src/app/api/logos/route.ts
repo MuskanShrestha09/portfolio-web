@@ -20,7 +20,7 @@ export async function GET(_req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const pwd = req.headers.get('X-Admin-Password');
-  if (pwd !== getEnvVariable('ADMIN_PASSWORD')) {
+  if (pwd !== await getEnvVariable('ADMIN_PASSWORD')) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const pwd = req.headers.get('X-Admin-Password');
-  if (pwd !== getEnvVariable('ADMIN_PASSWORD')) {
+  if (pwd !== await getEnvVariable('ADMIN_PASSWORD')) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

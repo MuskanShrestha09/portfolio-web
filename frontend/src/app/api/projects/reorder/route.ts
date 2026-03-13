@@ -6,7 +6,7 @@ export const runtime = 'edge';
 export async function PUT(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
+    if (authHeader !== await getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

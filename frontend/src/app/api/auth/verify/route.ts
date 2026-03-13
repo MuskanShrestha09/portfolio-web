@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     } catch (e) {}
 
     const db = env?.DB as D1Database | undefined;
-    const adminPassword = getEnvVariable('ADMIN_PASSWORD');
+    const adminPassword = await getEnvVariable('ADMIN_PASSWORD');
 
     if (!adminPassword) {
       return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });

@@ -21,7 +21,7 @@ export async function GET(_req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
+    if (authHeader !== await getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
+    if (authHeader !== await getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -58,7 +58,7 @@ export async function PUT(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
+    if (authHeader !== await getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
