@@ -9,12 +9,20 @@ export default function Icon() {
     (
       <div
         style={{
-          background: 'white',
+          background: 'black',
           width: '100%',
           height: '100%',
-          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#b0ff00', // Matches --accent
+          fontSize: '32px',
+          fontWeight: 'bold',
+          lineHeight: 1,
         }}
-      />
+      >
+        *
+      </div>
     ),
     { ...size }
   )

@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { useState } from 'react';
 import styles from './Navbar.module.css';
 
 interface NavbarProps {
@@ -12,9 +12,32 @@ interface NavbarProps {
 
 export default function Navbar({ hideName }: NavbarProps) {
   const pathname = usePathname();
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
+
+  // Don't hide for admin panel
+  const isAdmin = pathname?.startsWith('/admin');
+  const actualHidden = isAdmin ? false : hidden;
 
   return (
-    <nav className={styles.navbar}>
+    <motion.nav 
+      className={styles.navbar}
+      variants={{
+        visible: { y: 0, opacity: 1 },
+        hidden: { y: '-100%', opacity: 0 }
+      }}
+      animate={actualHidden ? "hidden" : "visible"}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+    >
       <div className={`container ${styles.navContainer}`}>
         <Link href="/" className={styles.brand}>
           {!hideName && (
@@ -39,6 +62,6 @@ export default function Navbar({ hideName }: NavbarProps) {
           </Link>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
