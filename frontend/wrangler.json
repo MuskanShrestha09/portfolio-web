@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "personal-web-frontend",
+  "compatibility_date": "2025-02-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "pages_build_output_dir": ".vercel/output/static",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "personal_web_db",
+      "database_id": "04e8a2b1-6985-45c4-9147-0e023a538bfb"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+export const DUMMY_PROJECTS = [
+  { id: 'design-1', title: 'Museo Casa Kahlo', category: 'Visual Identity', imageUrl: '', description: 'Visual identity for a new museum in the former home of Frida Kahlo.', behanceUrl: '#', type: 'design' },
+  { id: 'design-2', title: 'Chateau Engalin', category: 'Brand Identity', imageUrl: '', description: 'Brand identity for a culinary destination and celebration venue near Toulouse.', behanceUrl: '#', type: 'design' },
+  { id: 'design-3', title: 'Power Grid Components', category: 'Brand Identity', imageUrl: '', description: 'Brand identity for a leading manufacturer of electrical substation equipment.', behanceUrl: '#', type: 'design' },
+  { id: 'design-4', title: 'Igluu', category: 'Brand Identity', imageUrl: '', description: 'A brand identity for a human-centric real estate technology platform.', behanceUrl: '#', type: 'design' },
+  { id: 'design-5', title: 'YZD Aerospace', category: 'Brand Identity', imageUrl: '', description: 'Brand identity for a design-forward aerospace company in Toronto.', behanceUrl: '#', type: 'design' },
+  { id: 'design-6', title: 'COQODAQ', category: 'Brand Identity', imageUrl: '', description: 'Brand identity for a Korean fried chicken restaurant from the founders of Cote Steakhouse.', behanceUrl: '#', type: 'design' },
+  { id: 'design-7', title: 'Project Seven', category: 'Graphic Design', imageUrl: '', description: 'A conceptual project exploring typography and layout.', behanceUrl: '#', type: 'design' },
+  { id: 'design-8', title: 'Project Eight', category: 'UI/UX', imageUrl: '', description: 'A mobile app interface designed for a sustainable fashion brand.', behanceUrl: '#', type: 'design' },
+  { id: 'design-9', title: 'Project Nine', category: 'Poster Design', imageUrl: '', description: 'A series of minimalist posters designed for a local jazz festival.', behanceUrl: '#', type: 'design' },
+  { id: 'tech-1', title: 'Fintech Mobile App', category: 'App Development', imageUrl: '', description: 'A modern, secure mobile application for personal finance management with AI insights.', behanceUrl: '#', type: 'technology' },
+  { id: 'tech-2', title: 'DevTools Dashboard', category: 'Web App', imageUrl: '', description: 'Analytical dashboard for monitoring cloud infrastructure in real time.', behanceUrl: '#', type: 'technology' },
+  { id: 'tech-3', title: 'AI Assistant Interface', category: 'SaaS', imageUrl: '', description: 'Conversational UI for an enterprise-grade AI assistant platform.', behanceUrl: '#', type: 'technology' },
+  { id: 'tech-4', title: 'Supply Chain Platform', category: 'Enterprise SaaS', imageUrl: '', description: 'End-to-end supply chain transparency platform built for global manufacturers.', behanceUrl: '#', type: 'technology' },
+  { id: 'tech-5', title: 'E-Commerce OS', category: 'Web App', imageUrl: '', description: 'All-in-one operating system for managing online stores across channels.', behanceUrl: '#', type: 'technology' },
+  { id: 'tech-6', title: 'Healthcare Portal', category: 'Web Platform', imageUrl: '', description: 'Patient-centred healthcare management portal with scheduling and telemedicine.', behanceUrl: '#', type: 'technology' },
+];

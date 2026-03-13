@@ -1,0 +1,74 @@
+.main {
+  min-height: 100vh;
+}
+
+.brandContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.brandTitleWrapper {
+  max-width: 600px;
+}
+
+.brandTitle {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+}
+
+.brandSubtitle {
+  font-size: 1rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.logosGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.logoItem {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition: transform 0.8s var(--ease-expo);
+}
+
+.logoItem:hover {
+  transform: scale(0.98);
+  border-color: var(--accent);
+}
+
+.brandLogo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) invert(1);
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .logosGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .brandContainer {
+    gap: 3rem;
+  }
+  .logoItem {
+    padding: 2rem;
+  }
+}

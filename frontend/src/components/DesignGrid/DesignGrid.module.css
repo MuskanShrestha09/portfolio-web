@@ -1,0 +1,39 @@
+.container {
+  width: 100%;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.showMoreBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.showMoreBtn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .buttonWrapper {
+    margin-top: 2rem;
+  }
+}

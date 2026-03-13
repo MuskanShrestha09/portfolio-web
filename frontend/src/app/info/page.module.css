@@ -1,0 +1,233 @@
+.main {
+  width: 100%;
+}
+
+/* BIO SECTION */
+.bioSection {
+  padding: 15vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bioGrid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 5rem;
+}
+
+.bioLabel {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+}
+
+.bioLarge {
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 6rem;
+  color: var(--foreground);
+}
+
+.bioDetailWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.bioDetail {
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* EXPERIENCE SECTION */
+.experienceSection {
+  padding: 15vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.experienceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+.experienceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.experienceTitle {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+.experienceLabel {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.experienceList {
+  display: flex;
+  flex-direction: column;
+}
+
+.experienceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s var(--ease-expo);
+  cursor: pointer;
+}
+
+.experienceItem:hover {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom-color: var(--accent);
+}
+
+.expRole {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  transition: color 0.3s ease;
+}
+
+.experienceItem:hover .expRole {
+  color: var(--accent);
+}
+
+.expYear {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+/* CONTACT SECTION */
+.contactSection {
+  padding: 20vh 0;
+  background-color: var(--accent);
+  color: var(--background);
+  margin-top: 5vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.contactLabel {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+}
+
+.contactHuge {
+  font-size: clamp(4rem, 15vw, 15rem);
+  font-family: 'League Gothic', 'Bebas Neue', 'Impact', sans-serif;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
+  color: var(--background);
+}
+
+.contactInfo {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.contactLink {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1.2rem 3.5rem;
+  border: 2px solid var(--background);
+  border-radius: 50px;
+  transition: all 0.4s var(--ease-expo);
+  cursor: pointer !important;
+}
+
+.contactLink:hover {
+  background-color: var(--background);
+  color: var(--accent);
+  transform: translateY(-5px);
+}
+
+@media (max-width: 1024px) {
+  .bioGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .bioLabel {
+    position: static;
+    margin-bottom: 1rem;
+  }
+  .bioDetailWrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .experienceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .experienceItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+  .experienceItem:hover {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .contactInfo {
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  .contactLink {
+    width: 100%;
+  }
+}

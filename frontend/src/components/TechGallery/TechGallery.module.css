@@ -1,0 +1,131 @@
+.carouselContainer {
+  margin-bottom: var(--section-gap);
+  width: 100%;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #111;
+  padding: 0;
+  line-height: 1;
+  margin: 0 0 1.25rem 0;
+}
+
+.sectionDescription {
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #666;
+  max-width: 800px;
+  margin-bottom: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.arrows {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--foreground);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.arrow:hover {
+  background: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
+  transform: translateY(-2px);
+}
+
+.arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.singleItemView {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 1.5rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dotActive {
+  background-color: var(--foreground);
+  transform: scale(1.1);
+  width: 24px;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .carouselContainer {
+    margin-bottom: calc(var(--section-gap) * 0.8);
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .sectionDescription {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+  .arrows {
+    display: none;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+  }
+  .dotActive {
+    width: 24px;
+  }
+}

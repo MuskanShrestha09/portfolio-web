@@ -1,0 +1,518 @@
+.adminContainer {
+    display: flex;
+    min-height: 100vh;
+    font-family: var(--font-primary);
+    background: #fbfbfc;
+    color: #333;
+}
+
+/* Login Card - Soft & Premium */
+.loginWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f4f7;
+}
+
+.loginCard {
+    background: #fff;
+    padding: 3.5rem;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 2px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.loginCard h1 {
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    font-weight: 400; /* No bold */
+    color: #111;
+}
+
+.loginInput {
+    padding: 0.9rem 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    background: #fafafa;
+    transition: all 0.2s ease;
+}
+
+.loginInput:focus {
+    outline: none;
+    border-color: #000;
+    background: #fff;
+}
+
+/* Sidebar - Fixed & Minimal */
+.sidebar {
+    width: 250px;
+    background: #fff;
+    color: #333;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eee;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebarHeader {
+    margin-bottom: 3.5rem;
+    padding-left: 0.5rem;
+}
+
+.sidebarHeader h1 {
+    font-size: 1.1rem;
+    font-weight: 400; /* No bold */
+    letter-spacing: 0.05em;
+    color: #000;
+}
+
+.sidebarHeader p {
+    font-size: 0.7rem;
+    color: #aaa;
+    margin-top: 0.2rem;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex-grow: 1;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 400; /* No bold */
+    color: #666;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.navItem:hover {
+    background: #f4f4f7;
+    color: #000;
+}
+
+.navItemActive {
+    background: #f4f4f7;
+    color: #000;
+}
+
+/* Upload Styles */
+.uploadGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    grid-column: span 2;
+}
+
+.uploadArea {
+    border: 1px dashed #ddd;
+    border-radius: 2px;
+    padding: 2rem;
+    text-align: center;
+    background: #fafafa;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #999;
+}
+
+.uploadArea:hover {
+    border-color: #000;
+    background: #f5f5f5;
+    color: #333;
+}
+
+.imagePreviewContainer {
+    position: relative;
+    width: 100%;
+}
+
+.removeImageBtn {
+    position: absolute;
+    top: 1.5rem;
+    right: 0.5rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.removeImageBtn:hover {
+    transform: scale(1.1);
+    background: #ff4d4f;
+}
+
+.imagePreview {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover; /* Changed to cover for project shots */
+    border-radius: 2px;
+    margin-top: 1rem;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    padding: 0; /* No padding for project shots */
+}
+
+/* Settings Form Specifics */
+.textarea {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: all 0.15s ease;
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: #000;
+    background: #fff;
+}
+
+.experienceRow {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.experienceRow input {
+    flex-grow: 1;
+}
+
+.addBtn {
+    background: transparent;
+    border: 1px solid #eee;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.addBtn:hover {
+    background: #f9f9f9;
+}
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContainer {
+    background: #fff;
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 2px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+    position: relative;
+    padding: 4rem;
+}
+
+.modalContainer .form {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.modalHeader h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: #000;
+}
+
+.tableActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.addNewBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 0 1.2rem;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 42px;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.addNewBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.logoutBtn {
+    margin-top: auto;
+    padding: 0.75rem;
+    background: #fff;
+    color: #ff4d4f;
+    border: 1px solid #ffccc7;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.logoutBtn:hover {
+    background: #fff2f0;
+}
+
+/* Main Content Area - Scrollable & Centered */
+.mainContent {
+    flex-grow: 1;
+    margin-left: 250px; /* Offset for fixed sidebar */
+    padding: 4rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.contentWrapper {
+    width: 100%;
+    max-width: 1100px;
+}
+
+.section {
+    margin-bottom: 5rem;
+}
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 2.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Form Styles - Soft & Minimal (2px radius) */
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 2px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.fullWidth {
+    grid-column: span 2;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.inputGroup label {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.form input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: all 0.15s ease;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: #000;
+    background: #fff;
+}
+
+.submitBtn {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.2rem;
+    background: #111;
+    color: #fff;
+    border: 1px solid #111;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+    height: 42px;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.submitBtn:hover {
+    background: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Project List - Table approach */
+.projectList {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 2px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.projectHeader {
+    background: #fdfdfd;
+    border-bottom: 1px solid #eee;
+}
+
+.projectHeader th {
+    text-align: left;
+    padding: 1.1rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.projectRow {
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.projectRow td {
+    padding: 1.1rem 1.5rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.deleteBtn {
+    background: transparent;
+    color: #ddd;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+    color: #ff4d4f;
+    background: #fff2f0;
+}
+
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #fff;
+    color: #111;
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
+    .mainContent {
+        margin-left: 0;
+        padding: 2rem;
+    }
+}

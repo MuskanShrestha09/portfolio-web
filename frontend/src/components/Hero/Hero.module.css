@@ -1,0 +1,249 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+/* 3D Grid Construction */
+.gridContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.gridTop,
+.gridBottom {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  left: -50%;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.gridTop {
+  top: -100%;
+  transform: rotateX(90deg);
+  mask-image: linear-gradient(to top, black, transparent);
+}
+
+.gridBottom {
+  bottom: -50%;
+  transform: rotateX(-90deg);
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.gridLeft,
+.gridRight {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  top: -50%;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+.gridLeft {
+  left: -50%;
+  transform: rotateY(90deg);
+  mask-image: linear-gradient(to left, black, transparent);
+}
+
+.gridRight {
+  right: -50%;
+  transform: rotateY(-90deg);
+  mask-image: linear-gradient(to right, black, transparent);
+}
+
+.gridCenter {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  right: 15%;
+  bottom: 15%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 100px 100px;
+}
+
+/* HUD Styling */
+.hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  z-index: 10;
+  pointer-events: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+
+.topLeft {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  opacity: 0.8;
+}
+
+.topCenter {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.topRight {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.dots {
+  line-height: 8px;
+  letter-spacing: 4px;
+}
+
+.rightHud {
+  position: absolute;
+  bottom: 100px;
+  right: 40px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.hudText {
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+
+.arrowDown {
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+/* Content & Typography */
+.content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(3rem, 10vw, 13rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: #fff;
+  max-width: 95vw;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.25em;
+}
+
+.asterisk {
+  color: var(--accent);
+  margin-left: 2px;
+}
+
+.plusContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.plus {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 200;
+}
+
+.plus:nth-child(1) {
+  top: 70%;
+  left: 20%;
+}
+
+.plus:nth-child(2) {
+  top: 80%;
+  left: 50%;
+}
+
+.plus:nth-child(3) {
+  top: 75%;
+  left: 70%;
+}
+
+.plus:nth-child(4) {
+  top: 90%;
+  left: 15%;
+}
+
+.plus:nth-child(5) {
+  top: 85%;
+  left: 60%;
+}
+
+.plus:nth-child(6) {
+  top: 92%;
+  left: 85%;
+}
+
+.floatingCircle {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 4rem;
+  }
+
+  .hud {
+    padding: 20px;
+  }
+}
