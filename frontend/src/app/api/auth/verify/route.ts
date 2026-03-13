@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getEnvVariable } from '@/lib/db/client';
 
 export const runtime = 'edge';
 
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest) {
     } catch (e) {}
 
     const db = env?.DB as D1Database | undefined;
-    const adminPassword = process.env.ADMIN_PASSWORD;
+    const adminPassword = getEnvVariable('ADMIN_PASSWORD');
 
     if (!adminPassword) {
       return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });

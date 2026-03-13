@@ -1,4 +1,5 @@
 import { dbService } from '@/lib/db/service';
+import { getEnvVariable } from '@/lib/db/client';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const runtime = 'edge';
@@ -20,7 +21,7 @@ export async function GET(_req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== process.env.ADMIN_PASSWORD) {
+    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== process.env.ADMIN_PASSWORD) {
+    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -57,7 +58,7 @@ export async function PUT(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== process.env.ADMIN_PASSWORD) {
+    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 

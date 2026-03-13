@@ -15,3 +15,17 @@ export function getDb() {
     return null;
   }
 }
+export function getEnvVariable(key: string): string | undefined {
+  if (typeof window !== 'undefined') return undefined;
+
+  // 1. Try process.env (Standard/Local)
+  if (process.env[key]) return process.env[key];
+
+  // 2. Try Cloudflare Request Context
+  try {
+    const ctx = getRequestContext();
+    return (ctx?.env as any)?.[key];
+  } catch (e) {
+    return undefined;
+  }
+}

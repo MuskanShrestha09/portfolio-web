@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getEnvVariable } from '@/lib/db/client';
 
 export const runtime = 'edge';
 
 export async function PUT(req: NextRequest) {
   try {
     const authHeader = req.headers.get('X-Admin-Password');
-    if (authHeader !== process.env.ADMIN_PASSWORD) {
+    if (authHeader !== getEnvVariable('ADMIN_PASSWORD')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
