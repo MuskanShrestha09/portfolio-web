@@ -13,8 +13,8 @@ interface IntroSectionProps {
 
 const DEFAULT_GALLERY = [
   '/p.jpg',
-  '/ui_ux_design_2.png',
-  '/ui_ux_design_3.png'
+  '/project-01.jpg',
+  '/project-02.jpg'
 ];
 
 export default function IntroSection({ name, tagline, galleryImages }: IntroSectionProps) {
@@ -42,13 +42,28 @@ export default function IntroSection({ name, tagline, galleryImages }: IntroSect
       {/* PHASE 1: Sticky Carousel & Text */}
       <section ref={sectionRef} className={styles.introWrapper}>
         <div className={styles.galleryBackground}>
-          <motion.div style={{ y: y1 }} className={styles.galleryItem}>
+          <motion.div 
+            style={{ y: y1 }} 
+            className={styles.galleryItem}
+            whileHover={{ scale: 1.05, zIndex: 50, rotate: -1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
             <Image src={displayImages[0]} alt="Design 1" width={400} height={500} className={styles.image} unoptimized />
           </motion.div>
-          <motion.div style={{ y: y2 }} className={styles.galleryItem}>
+          <motion.div 
+            style={{ y: y2 }} 
+            className={styles.galleryItem}
+            whileHover={{ scale: 1.05, zIndex: 50, rotate: 1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
             <Image src={displayImages[1]} alt="Design 2" width={500} height={350} className={styles.image} unoptimized />
           </motion.div>
-          <motion.div style={{ y: y3 }} className={styles.galleryItem}>
+          <motion.div 
+            style={{ y: y3 }} 
+            className={styles.galleryItem}
+            whileHover={{ scale: 1.05, zIndex: 50, rotate: -1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
             <Image src={displayImages[2]} alt="Design 3" width={450} height={600} className={styles.image} unoptimized />
           </motion.div>
         </div>

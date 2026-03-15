@@ -1,0 +1,38 @@
+.heroSection {
+  padding: 8rem 0 4rem;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20rem, 15vw, 12rem);
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 900px;
+  line-height: 1.6;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+}

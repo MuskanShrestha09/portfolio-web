@@ -5,15 +5,25 @@ import { useEffect, useState } from 'react';
 import styles from './Hero.module.css';
 
 export default function Hero() {
-  const [time, setTime] = useState('15:29:56');
+  const [time, setTime] = useState('');
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const updateTime = () => {
       const now = new Date();
       setTime(now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-    }, 1000);
+    };
+
+    updateTime(); // Run immediately on mount
+    const timer = setInterval(updateTime, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  const scrollToNext = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <section className={styles.hero}>
@@ -35,7 +45,9 @@ export default function Hero() {
 
       {/* HUD Elements */}
       <div className={styles.hud}>
-        <div className={styles.topLeft}>{time}</div>
+        <div className={styles.topLeft}>
+          {time}
+        </div>
         <div className={styles.topCenter}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
             <path d="M12 2L4.5 20.29L5.21 21L12 18L18.79 21L19.5 20.29L12 2Z" />
@@ -61,7 +73,13 @@ export default function Hero() {
             MY FORTE LIES IN AUTOMOTIVE,<br />
             SAAS, TECH, FASHION
           </div>
-          <div className={styles.arrowDown}>↓</div>
+          <div
+            className={styles.arrowDown}
+            onClick={scrollToNext}
+            style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+          >
+            ↓
+          </div>
         </div>
       </div>
 
@@ -83,7 +101,7 @@ export default function Hero() {
           animate="visible"
         >
           <div className={styles.line}>
-            {"I Fix Bad UX for ".split(" ").map((word, i) => (
+            {"Making people  ".split(" ").map((word, i) => (
               <motion.span
                 key={i}
                 className={styles.word}
@@ -98,7 +116,7 @@ export default function Hero() {
             ))}
           </div>
           <div className={styles.line}>
-            {["A", "Living"].map((word, i) => (
+            {["[ Muskan ]"].map((word, i) => (
               <motion.span
                 key={i}
                 className={styles.word}

@@ -3,6 +3,10 @@
   margin-bottom: 8rem;
 }
 
+.workCard {
+  margin-bottom: 2rem !important;
+}
+
 .link {
   display: block;
 }
@@ -18,10 +22,19 @@
   transition: border-color 0.4s ease;
 }
 
+.workImageWrapper {
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 4px; /* Slightly softer for box design */
+}
+
 .image {
   object-fit: cover;
   transition: transform 1.5s var(--ease-expo), filter 0.4s ease;
   filter: grayscale(1) brightness(0.8);
+}
+
+.workImage {
+  filter: grayscale(0) brightness(1) !important;
 }
 
 .link:hover .imageWrapper {
@@ -75,11 +88,11 @@
 }
 
 @media (min-width: 1024px) {
-  /* Alternating sizes for staggered look */
-  .projectCard:nth-child(even) {
+  /* Only apply to default (staggered) projects */
+  .projectCard:not(.workCard):nth-child(even) {
     padding-left: 20%;
   }
-  .projectCard:nth-child(odd) {
+  .projectCard:not(.workCard):nth-child(odd) {
     padding-right: 20%;
   }
 }

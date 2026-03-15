@@ -14,4 +14,7 @@ export const DUMMY_PROJECTS = [
   { id: 'tech-4', title: 'Supply Chain Platform', category: 'Enterprise SaaS', imageUrl: '', description: 'End-to-end supply chain transparency platform built for global manufacturers.', behanceUrl: '#', type: 'technology' },
   { id: 'tech-5', title: 'E-Commerce OS', category: 'Web App', imageUrl: '', description: 'All-in-one operating system for managing online stores across channels.', behanceUrl: '#', type: 'technology' },
   { id: 'tech-6', title: 'Healthcare Portal', category: 'Web Platform', imageUrl: '', description: 'Patient-centred healthcare management portal with scheduling and telemedicine.', behanceUrl: '#', type: 'technology' },
+  { id: 'work-1', title: 'Editorial Archive', category: 'Photography', imageUrl: '', description: 'A collection of editorial photography work for various lifestyle magazines.', behanceUrl: '#', type: 'work' },
+  { id: 'work-2', title: 'Motion Graphics 2025', category: 'Motion', imageUrl: '', description: 'A showreel of motion design projects completed throughout the year.', behanceUrl: '#', type: 'work' },
+  { id: 'work-3', title: 'Icon System', category: 'Illustration', imageUrl: '', description: 'A custom icon set designed for a smart home application.', behanceUrl: '#', type: 'work' },
 ];

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { 
   Trash2, LogOut, 
-  Upload, User, Plus, X, Briefcase, GripVertical
+  Upload, User, Plus, X, Briefcase, GripVertical, Grid
 } from 'lucide-react';
 import { Reorder } from 'framer-motion';
 import styles from './admin.module.css';
@@ -39,7 +39,7 @@ interface SiteSettings {
   intro_gallery: string; // JSON string
 }
 
-type Tab = 'projects' | 'logos' | 'info';
+type Tab = 'projects' | 'works' | 'logos' | 'info';
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -198,8 +198,8 @@ export default function AdminPage() {
   const saveOrder = async () => {
     setIsSavingOrder(true);
     const pwd = sessionStorage.getItem('admin_password');
-    // Only map projects that match the current filter, preserving global IDs but updating local relative sort_order
-    const filteredProjects = projects.filter(p => (p.type || 'design') === projectFilter);
+    const filterType = activeTab === 'works' ? 'work' : projectFilter;
+    const filteredProjects = projects.filter(p => (p.type || (activeTab === 'works' ? 'work' : 'design')) === filterType);
     const reorderedProjects = filteredProjects.map((p, index) => ({ id: p.id, sort_order: index }));
     
     try {
@@ -380,6 +380,12 @@ export default function AdminPage() {
             <Briefcase size={18} /> Projects
           </div>
           <div 
+            className={`${styles.navItem} ${activeTab === 'works' ? styles.navItemActive : ''}`}
+            onClick={() => setActiveTab('works')}
+          >
+            <Grid size={18} /> Works
+          </div>
+          <div 
             className={`${styles.navItem} ${activeTab === 'logos' ? styles.navItemActive : ''}`}
             onClick={() => setActiveTab('logos')}
           >
@@ -504,6 +510,7 @@ export default function AdminPage() {
                         >
                           <option value="design">Design</option>
                           <option value="technology">Technology</option>
+                          <option value="work">Work</option>
                         </select>
                       </div>
                       <div className={styles.inputGroup}>
@@ -595,6 +602,63 @@ export default function AdminPage() {
                   </div>
                 </div>
               )}
+            </section>
+          )}
+
+          {/* WORKS TAB */}
+          {activeTab === 'works' && (
+            <section className={styles.section}>
+              <div className={styles.tableActions}>
+                <h2 className={styles.sectionTitle} style={{ marginBottom: 0 }}>Work list</h2>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                  <button 
+                    className={styles.submitBtn} 
+                    style={{ margin: 0 }} 
+                    onClick={saveOrder}
+                    disabled={isSavingOrder}
+                  >
+                    {isSavingOrder ? 'Saving...' : 'Save Order'}
+                  </button>
+                  <button className={styles.addNewBtn} onClick={() => { setIsEditing(false); setNewProject({ id: '', title: '', category: '', description: '', imageUrl: '', behanceUrl: '', type: 'work' }); setIsModalOpen(true); }}>
+                    <Plus size={18} /> Add New Work
+                  </button>
+                </div>
+              </div>
+
+              <div className={styles.projectListHeader} style={{ display: 'flex', padding: '1rem', borderBottom: '2px solid #eee', fontWeight: 'bold' }}>
+                <div style={{ width: '40px' }}></div>
+                <div style={{ flex: 1 }}>Work Item</div>
+                <div style={{ flex: 1 }}>Category</div>
+                <div style={{ width: '150px', textAlign: 'right' }}>Actions</div>
+              </div>
+
+              <Reorder.Group 
+                axis="y" 
+                values={projects.filter(p => p.type === 'work')} 
+                onReorder={(newOrder) => {
+                  const otherProjects = projects.filter(p => p.type !== 'work');
+                  setProjects([...newOrder, ...otherProjects]);
+                }} 
+                style={{ listStyle: 'none', padding: 0, margin: 0 }}
+              >
+                {projects.filter(p => p.type === 'work').map(p => (
+                  <Reorder.Item key={p.id} value={p} className={styles.projectRow} style={{ display: 'flex', alignItems: 'center', padding: '1rem', borderBottom: '1px solid #eee', background: '#fff', cursor: 'grab' }} whileDrag={{ scale: 1.02, boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }}>
+                    <div style={{ width: '40px', color: '#999', cursor: 'grab', display: 'flex', alignItems: 'center' }}>
+                      <GripVertical size={20} />
+                    </div>
+                    <div className={styles.projectTitle} style={{ flex: 1 }}>{p.title}</div>
+                    <div className={styles.projectCategory} style={{ flex: 1 }}>{p.category}</div>
+                    <div style={{ width: '150px', display: 'flex', justifyContent: 'flex-end', gap: '0.5rem' }}>
+                      <button onClick={() => editProject(p)} className={styles.deleteBtn} style={{ color: '#000' }}>
+                        Edit
+                      </button>
+                      <button onClick={() => deleteProject(p.id)} className={styles.deleteBtn}>
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </Reorder.Item>
+                ))}
+              </Reorder.Group>
             </section>
           )}
 

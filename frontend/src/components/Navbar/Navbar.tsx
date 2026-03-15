@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 
 interface NavbarProps {
@@ -14,6 +14,18 @@ export default function Navbar({ hideName }: NavbarProps) {
   const pathname = usePathname();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }));
+    }, 1000);
+    // Initial call
+    const now = new Date();
+    setTime(now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }));
+    return () => clearInterval(timer);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
@@ -40,18 +52,19 @@ export default function Navbar({ hideName }: NavbarProps) {
     >
       <div className={`container ${styles.navContainer}`}>
         <Link href="/" className={styles.brand}>
-          {!hideName && (
-            <span className={styles.name}>MUSKAN</span>
+          {pathname !== '/' && (
+            <span className={styles.time}>{time}</span>
           )}
+          <span className={styles.name}>MUSKAN</span>
         </Link>
         
         <div className={styles.navLinks}>
           <Link 
-            href="/" 
-            className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}
+            href="/work" 
+            className={`${styles.link} ${pathname === '/work' ? styles.active : ''}`}
           >
             Work
-            {pathname === '/' && <motion.div layoutId="nav-underline" className={styles.underline} />}
+            {pathname === '/work' && <motion.div layoutId="nav-underline" className={styles.underline} />}
           </Link>
           <Link 
             href="/info" 

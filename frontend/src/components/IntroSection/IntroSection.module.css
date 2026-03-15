@@ -20,6 +20,7 @@
   position: absolute;
   opacity: 0.6;
   transition: opacity 0.6s ease;
+  pointer-events: auto;
 }
 
 .galleryItem:hover {
@@ -31,6 +32,12 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   object-fit: cover;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+  transition: box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.galleryItem:hover .image {
+  box-shadow: 0 60px 120px rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Specific Positions for Gallery Items */

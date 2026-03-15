@@ -1,0 +1,90 @@
+.card {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.link {
+  text-decoration: none;
+  display: block;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 32px;
+  background-color: #f5f5f7;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 1s var(--ease-expo);
+}
+
+.link:hover .image {
+  transform: scale(1.05);
+}
+
+.info {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.category {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #888;
+}
+
+.arrowCircle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.link:hover .arrowCircle {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 1.25rem;
+  }
+  .arrowCircle {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .imageWrapper {
+    border-radius: 20px;
+  }
+}

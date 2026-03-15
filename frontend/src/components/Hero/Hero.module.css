@@ -100,6 +100,32 @@
   top: 40px;
   left: 40px;
   opacity: 0.8;
+  display: flex;
+  align-items: center;
+}
+
+.nameInHud {
+  margin-left: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.nameInHud {
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.timeHud {
+  font-weight: 200;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
 }
 
 .topCenter {

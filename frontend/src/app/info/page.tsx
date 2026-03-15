@@ -41,7 +41,7 @@ export default async function InfoPage() {
 
   return (
     <>
-      <Navbar hideName={true} />
+      <Navbar hideName={false} />
       <main className={styles.main}>
         <InfoHero portrait={settings?.info_portrait || "/muskan.png"} bio={bio} email={email} />
 

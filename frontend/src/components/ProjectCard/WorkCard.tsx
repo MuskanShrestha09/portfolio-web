@@ -2,16 +2,15 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import styles from './ProjectCard.module.css';
+import { ArrowRight } from 'lucide-react';
+import styles from './WorkCard.module.css';
 
-interface ProjectCardProps {
+interface WorkCardProps {
   id: string;
   title: string;
   category: string;
   imageUrl: string;
-  description?: string;
   behanceUrl: string;
-  variant?: 'default' | 'work';
 }
 
 const UNSPLASH_IMAGES = [
@@ -21,37 +20,37 @@ const UNSPLASH_IMAGES = [
   'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop',
 ];
 
-export default function ProjectCard({ id, title, category, imageUrl, behanceUrl, variant = 'default' }: ProjectCardProps) {
-  // Use a pseudo-random unsplash image if none provided
+export default function WorkCard({ id, title, category, imageUrl, behanceUrl }: WorkCardProps) {
   const placeholderImage = UNSPLASH_IMAGES[id.length % UNSPLASH_IMAGES.length];
   const src = imageUrl || placeholderImage;
 
   return (
     <motion.div 
-      className={`${styles.projectCard} ${variant === 'work' ? styles.workCard : ''}`}
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      className={styles.card}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <a href={behanceUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
-        <div className={`${styles.imageWrapper} ${variant === 'work' ? styles.workImageWrapper : ''}`}>
+        <div className={styles.imageWrapper}>
           <Image 
             src={src} 
             alt={title} 
             fill 
-            className={`${styles.image} ${variant === 'work' ? styles.workImage : ''}`}
-            sizes="(max-width: 768px) 100vw, 50vw"
+            className={styles.image}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             unoptimized
           />
-          <div className={styles.overlay} />
         </div>
         
-        <div className={styles.content}>
-          <div className={styles.category}>{category || 'Visual Identity'}</div>
-          <div className={styles.rightContent}>
+        <div className={styles.info}>
+          <div className={styles.text}>
             <h3 className={styles.title}>{title}</h3>
-            <div className={styles.smallDot} />
+            <p className={styles.category}>{category}</p>
+          </div>
+          <div className={styles.arrowCircle}>
+            <ArrowRight size={20} />
           </div>
         </div>
       </a>

@@ -1,0 +1,43 @@
+.main {
+  min-height: 100vh;
+  background-color: #000;
+  color: #fff;
+}
+
+.heroSpacer {
+  height: 120px;
+}
+
+.heroSection {
+  padding: 4rem 0;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 200;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.6;
+}
+
+.workList {
+  padding-bottom: 10rem;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 4rem;
+  }
+  .heroSpacer {
+    height: 80px;
+  }
+}

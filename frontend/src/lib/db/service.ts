@@ -131,7 +131,7 @@ export class DatabaseService {
         return {
           site_tagline: 'A UI/UX designer creating intuitive, user-centered digital experiences for web and mobile.',
           info_bio: "Hi, I'm Muskan.",
-          intro_gallery: JSON.stringify(['/p.jpg', '/ui_ux_design_2.png', '/ui_ux_design_3.png'])
+          intro_gallery: JSON.stringify(['/p.jpg', '/project-01.jpg', '/project-02.jpg'])
         } as SiteSettings;
       }
       return {};

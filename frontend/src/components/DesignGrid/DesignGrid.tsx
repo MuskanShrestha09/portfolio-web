@@ -15,9 +15,10 @@ interface Project {
 
 interface DesignGridProps {
   projects: Project[];
+  variant?: 'default' | 'work';
 }
 
-export default function DesignGrid({ projects }: DesignGridProps) {
+export default function DesignGrid({ projects, variant = 'default' }: DesignGridProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   const visibleProjects = isExpanded ? projects : projects.slice(0, 6);
@@ -25,9 +26,9 @@ export default function DesignGrid({ projects }: DesignGridProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.grid}>
+      <div className={variant === 'work' ? styles.workGrid : styles.grid}>
         {visibleProjects.map((project) => (
-          <ProjectCard key={project.id} {...project} />
+          <ProjectCard key={project.id} {...project} variant={variant} />
         ))}
       </div>
       
