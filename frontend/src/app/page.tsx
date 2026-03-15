@@ -27,6 +27,14 @@ async function getData() {
 export default async function Home() {
   const { projects, logos, settings } = await getData();
   const designProjects = projects.filter((p: any) => !p.type || p.type === 'design');
+  
+  // Parse intro gallery
+  let introGallery: string[] = [];
+  try {
+    introGallery = JSON.parse(settings.intro_gallery || '[]');
+  } catch (e) {
+    introGallery = [];
+  }
 
   return (
     <>
@@ -36,6 +44,7 @@ export default async function Home() {
         <IntroSection 
           name="Muskan" 
           tagline={settings.site_tagline} 
+          galleryImages={introGallery}
         />
 
         <SectionHeader />

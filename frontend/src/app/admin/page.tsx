@@ -36,6 +36,7 @@ interface SiteSettings {
   site_tagline: string;
   design_description: string;
   tech_description: string;
+  intro_gallery: string; // JSON string
 }
 
 type Tab = 'projects' | 'logos' | 'info';
@@ -65,6 +66,7 @@ export default function AdminPage() {
     site_tagline: '',
     design_description: '',
     tech_description: '',
+    intro_gallery: '[]',
   });
 
   // Form States
@@ -76,6 +78,7 @@ export default function AdminPage() {
   const [originalId, setOriginalId] = useState<string | null>(null);
   const [newLogo, setNewLogo] = useState<Logo>({ imageUrl: '', name: '' });
   const [experience, setExperience] = useState<{label: string, title: string}[]>([]);
+  const [introGallery, setIntroGallery] = useState<string[]>([]);
 
   useEffect(() => {
     const savedPassword = sessionStorage.getItem('admin_password');
@@ -111,6 +114,11 @@ export default function AdminPage() {
           setExperience(JSON.parse(s.info_experience || '[]'));
         } catch (error) {
           setExperience([]);
+        }
+        try {
+          setIntroGallery(JSON.parse(s.intro_gallery || '[]'));
+        } catch (error) {
+          setIntroGallery([]);
         }
       }
     } catch (error) {
@@ -308,7 +316,8 @@ export default function AdminPage() {
     const pwd = sessionStorage.getItem('admin_password');
     const updated = {
       ...settings,
-      info_experience: JSON.stringify(experience)
+      info_experience: JSON.stringify(experience),
+      intro_gallery: JSON.stringify(introGallery)
     };
     
     try {
@@ -758,6 +767,40 @@ export default function AdminPage() {
                   <button className={styles.addBtn} onClick={() => setExperience([...experience, {label: '', title: ''}])}>
                     + Add Experience Row
                   </button>
+                </div>
+
+                <div className={styles.uploadGroup} style={{ marginTop: '2rem' }}>
+                  <label>Background Designs (Intro Section)</label>
+                  <p style={{ fontSize: '0.8rem', color: '#666', marginBottom: '1rem' }}>Manage the 3 floating background images in the intro section.</p>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                    {[0, 1, 2].map(idx => (
+                      <div key={idx} className={styles.uploadArea} style={{ minHeight: '120px', padding: '1rem' }} onClick={() => document.getElementById(`intro-upload-${idx}`)?.click()}>
+                        {introGallery[idx] ? (
+                          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                            <img src={introGallery[idx]} style={{ width: '100%', height: '80px', objectFit: 'cover', borderRadius: '4px' }} alt={`Design ${idx + 1}`} />
+                            <span style={{ fontSize: '0.7rem', display: 'block', marginTop: '0.5rem' }}>Design {idx + 1}</span>
+                          </div>
+                        ) : (
+                          <>
+                            <Upload size={20} />
+                            <span style={{ fontSize: '0.7rem' }}>Design {idx + 1}</span>
+                          </>
+                        )}
+                        <input id={`intro-upload-${idx}`} type="file" hidden onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            const url = await handleFileUpload(file);
+                            if (url) {
+                              const newGallery = [...introGallery];
+                              while (newGallery.length <= idx) newGallery.push('');
+                              newGallery[idx] = url;
+                              setIntroGallery(newGallery);
+                            }
+                          }
+                        }} />
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div className={styles.uploadGroup} style={{ marginTop: '2rem' }}>

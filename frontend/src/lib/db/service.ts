@@ -125,7 +125,17 @@ export class DatabaseService {
 
   async getSettings(): Promise<SiteSettings> {
     const db = await this.getClient();
-    if (!db) return {};
+    
+    if (!db) {
+      if (process.env.NODE_ENV === 'development') {
+        return {
+          site_tagline: 'A UI/UX designer creating intuitive, user-centered digital experiences for web and mobile.',
+          info_bio: "Hi, I'm Muskan.",
+          intro_gallery: JSON.stringify(['/p.jpg', '/ui_ux_design_2.png', '/ui_ux_design_3.png'])
+        } as SiteSettings;
+      }
+      return {};
+    }
 
     try {
       const { results } = await db.prepare('SELECT * FROM site_settings').all();
@@ -141,12 +151,22 @@ export class DatabaseService {
 
   async updateSettings(updates: SiteSettings): Promise<boolean> {
     const db = await this.getClient();
-    if (!db) return false;
+    
+    if (!db) {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('DatabaseService: Local development mode - simulating successful settings update.');
+        return true;
+      }
+      console.error('DatabaseService.updateSettings: No database client available.');
+      return false;
+    }
 
     try {
       for (const [key, value] of Object.entries(updates)) {
+        if (value === undefined || value === null) continue;
+        
         await db.prepare('INSERT OR REPLACE INTO site_settings (key, value) VALUES (?, ?)')
-          .bind(key.trim(), (value as string).trim()).run();
+          .bind(key.trim(), String(value).trim()).run();
       }
       return true;
     } catch (e) {

@@ -8,17 +8,22 @@ import styles from './IntroSection.module.css';
 interface IntroSectionProps {
   name: string;
   tagline: string;
+  galleryImages?: string[];
 }
 
-const GALLERY_IMAGES = [
-  '/ui_ux_design_1.png',
+const DEFAULT_GALLERY = [
+  '/p.jpg',
   '/ui_ux_design_2.png',
   '/ui_ux_design_3.png'
 ];
 
-export default function IntroSection({ name, tagline }: IntroSectionProps) {
+export default function IntroSection({ name, tagline, galleryImages }: IntroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   
+  const displayImages = galleryImages && galleryImages.length >= 3 
+    ? galleryImages 
+    : DEFAULT_GALLERY;
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"]
@@ -38,13 +43,13 @@ export default function IntroSection({ name, tagline }: IntroSectionProps) {
       <section ref={sectionRef} className={styles.introWrapper}>
         <div className={styles.galleryBackground}>
           <motion.div style={{ y: y1 }} className={styles.galleryItem}>
-            <Image src={GALLERY_IMAGES[0]} alt="Design 1" width={400} height={500} className={styles.image} unoptimized />
+            <Image src={displayImages[0]} alt="Design 1" width={400} height={500} className={styles.image} unoptimized />
           </motion.div>
           <motion.div style={{ y: y2 }} className={styles.galleryItem}>
-            <Image src={GALLERY_IMAGES[1]} alt="Design 2" width={500} height={350} className={styles.image} unoptimized />
+            <Image src={displayImages[1]} alt="Design 2" width={500} height={350} className={styles.image} unoptimized />
           </motion.div>
           <motion.div style={{ y: y3 }} className={styles.galleryItem}>
-            <Image src={GALLERY_IMAGES[2]} alt="Design 3" width={450} height={600} className={styles.image} unoptimized />
+            <Image src={displayImages[2]} alt="Design 3" width={450} height={600} className={styles.image} unoptimized />
           </motion.div>
         </div>
 
