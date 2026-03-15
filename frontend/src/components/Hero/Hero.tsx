@@ -101,7 +101,7 @@ export default function Hero() {
           animate="visible"
         >
           <div className={styles.line}>
-            {"Making people  ".split(" ").map((word, i) => (
+            {"MAKING PEOPLE".split(" ").map((word, i) => (
               <motion.span
                 key={i}
                 className={styles.word}
@@ -116,7 +116,7 @@ export default function Hero() {
             ))}
           </div>
           <div className={styles.line}>
-            {["[ Muskan ]"].map((word, i) => (
+            {["[", "MUSKAN", "]"].map((word, i) => (
               <motion.span
                 key={i}
                 className={styles.word}
@@ -124,7 +124,7 @@ export default function Hero() {
                   hidden: { y: 20, opacity: 0, filter: 'blur(10px)' },
                   visible: { y: 0, opacity: 1, filter: 'blur(0px)' }
                 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 * i }}
               >
                 {word}
               </motion.span>
@@ -132,10 +132,11 @@ export default function Hero() {
             <motion.span
               className={styles.asterisk}
               variants={{
-                hidden: { scale: 0, opacity: 0 },
-                visible: { scale: 1, opacity: 1 }
+                hidden: { scale: 0, opacity: 0, rotate: -45 },
+                visible: { scale: 1, opacity: 1, rotate: 0 }
               }}
-              transition={{ delay: 1, duration: 0.5 }}
+              transition={{ delay: 0.8, duration: 0.5, ease: "backOut" }}
+              style={{ marginLeft: '10px' }}
             >
               *
             </motion.span>
