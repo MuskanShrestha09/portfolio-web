@@ -1,11 +1,21 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   const [time, setTime] = useState('');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Parallax effects
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   useEffect(() => {
     const updateTime = () => {
@@ -13,7 +23,7 @@ export default function Hero() {
       setTime(now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
     };
 
-    updateTime(); // Run immediately on mount
+    updateTime();
     const timer = setInterval(updateTime, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -26,22 +36,22 @@ export default function Hero() {
   };
 
   return (
-    <section className={styles.hero}>
-      {/* 3D Grid Perspective */}
-      <div className={styles.gridContainer}>
-        <div className={styles.gridTop} />
-        <div className={styles.gridBottom} />
-        <div className={styles.gridLeft} />
-        <div className={styles.gridRight} />
-        <div className={styles.gridCenter} />
-      </div>
-
-      {/* Decorative Plus Signs */}
-      <div className={styles.plusContainer}>
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className={styles.plus}>+</div>
-        ))}
-      </div>
+    <section className={styles.hero} ref={containerRef}>
+      {/* Animated Background Image */}
+      <motion.div
+        className={styles.backgroundImage}
+        style={{
+          y: backgroundY,
+          scale: backgroundScale
+        }}
+      >
+        <img
+          src="/Frame 1 (1).jpg"
+          alt="Hero Background"
+          className={styles.bgImg}
+        />
+        <div className={styles.overlay} />
+      </motion.div>
 
       {/* HUD Elements */}
       <div className={styles.hud}>
@@ -101,7 +111,7 @@ export default function Hero() {
           animate="visible"
         >
           <div className={styles.line}>
-            {"MAKING PEOPLE".split(" ").map((word, i) => (
+            {" MAKING PEOPLE".split(" ").map((word, i) => (
               <motion.span
                 key={i}
                 className={styles.word}
@@ -115,20 +125,26 @@ export default function Hero() {
               </motion.span>
             ))}
           </div>
-          <div className={styles.line}>
-            {["[", "MUSKAN", "]"].map((word, i) => (
-              <motion.span
-                key={i}
-                className={styles.word}
-                variants={{
-                  hidden: { y: 20, opacity: 0, filter: 'blur(10px)' },
-                  visible: { y: 0, opacity: 1, filter: 'blur(0px)' }
-                }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 * i }}
-              >
-                {word}
-              </motion.span>
-            ))}
+          <div className={`${styles.line} ${styles.line2}`}>
+            {["[", "MUSKAN", "]"].map((word, i) => {
+              let className = styles.word;
+              if (word === "MUSKAN") className = styles.nameHighlight;
+              else if (word === "[" || word === "]") className = styles.bracket;
+
+              return (
+                <motion.span
+                  key={i}
+                  className={className}
+                  variants={{
+                    hidden: { y: 20, opacity: 0, filter: 'blur(10px)' },
+                    visible: { y: 0, opacity: 1, filter: 'blur(0px)' }
+                  }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 * i }}
+                >
+                  {word}
+                </motion.span>
+              );
+            })}
             <motion.span
               className={styles.asterisk}
               variants={{
@@ -136,27 +152,27 @@ export default function Hero() {
                 visible: { scale: 1, opacity: 1, rotate: 0 }
               }}
               transition={{ delay: 0.8, duration: 0.5, ease: "backOut" }}
-              style={{ marginLeft: '10px' }}
             >
-              *
+              <svg 
+                viewBox="0 0 100 100" 
+                fill="currentColor"
+              >
+                {/* 8-pointed blocky asterisk */}
+                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+                  <rect
+                    key={angle}
+                    x="42" y="0"
+                    width="16" height="42"
+                    rx="2"
+                    transform={`rotate(${angle} 50 50)`}
+                  />
+                ))}
+                <rect x="42" y="42" width="16" height="16" rx="2" />
+              </svg>
             </motion.span>
           </div>
         </motion.h1>
       </div>
-
-      {/* Decorative Floating Circle */}
-      <motion.div
-        className={styles.floatingCircle}
-        animate={{
-          y: [0, -20, 0],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
     </section>
   );
 }
