@@ -46,7 +46,7 @@ export default function Hero() {
         }}
       >
         <img
-          src="/Frame 1 (1).jpg"
+          src="/hero_background.jpg"
           alt="Hero Background"
           className={styles.bgImg}
         />
